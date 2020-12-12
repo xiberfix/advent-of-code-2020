@@ -1,5 +1,7 @@
 package day5
 
+import common.boundsOrNull
+
 fun binary(c: Char) = when (c) {
     'B', 'R' -> '1'
     'F', 'L' -> '0'
@@ -19,8 +21,7 @@ fun part2(input: String): Int {
         .map { id(it) }
         .toList()
     // find missing number in arithmetic series: `expected sum` - `actual sum`
-    val min = ids.minOrNull()!!
-    val max = ids.maxOrNull()!!
+    val (min, max) = ids.boundsOrNull()!!
     val n = max - min + 1
     val s = (min + max) * n / 2
     return s - ids.sum()
